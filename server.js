@@ -4,9 +4,9 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 /* Application files */
-const productsRoutes = require('./routes/products-routes');
-const stockRoutes = require('./routes/stock-routes');
-const ordersRoutes = require('./routes/orders-routes');
+const productsRoutes = require('./src/routes/products-routes');
+const stockRoutes = require('./src/routes/stock-routes');
+const ordersRoutes = require('./src/routes/orders-routes');
 
 const app = express();
 
