@@ -2,8 +2,9 @@
 const { validationResult } = require('express-validator');
 
 /* Application files */
+const productEvents = require('../../events/product-events');
 const HttpError = require('../../models/http-error');
-const Product = require('../../models/product');
+const Product = require('../../models/commands/product-command');
 
 async function addProduct(req, res, next) {
     const errors = validationResult(req);
@@ -23,6 +24,7 @@ async function addProduct(req, res, next) {
 
     try {
         await newProduct.save();
+        productEvents.emit('productCreated', newProduct);
     } catch (err) {
         const error = new HttpError('Creating a new product failed.', 500);
         return next(error);

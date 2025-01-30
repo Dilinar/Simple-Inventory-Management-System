@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 
 /* Application files */
 const HttpError = require('../../models/http-error');
-const Order = require('../../models/order');
-const Product = require('../../models/product');
+const Order = require('../../models/commands/order-command');
+const Product = require('../../models/commands/product-command');
+const stockEvents = require('../../events/stock-events');
 
 async function createOrder(req, res, next) {
     const errors = validationResult(req);
@@ -55,6 +56,7 @@ async function createOrder(req, res, next) {
         const productInStock = orderProducts.find(p => p.id === product._id);
         productInStock.stock -= product.quantity;
         await productInStock.save({ session });
+        stockEvents.emit('stockUpdated', productInStock);
       }
   
       await session.commitTransaction();

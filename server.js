@@ -9,6 +9,9 @@ const productsQueriesRoutes = require('./src/routes/products-queries-routes');
 const stockCommandsRoutes = require('./src/routes/stock-commands-routes');
 const ordersCommandsRoutes = require('./src/routes/orders-commands-routes');
 
+require('./src/listeners/product-listeners');
+require('./src/listeners/stock-listeners');
+
 const app = express();
 
 app.use(bodyParser.json());

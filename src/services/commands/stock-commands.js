@@ -1,6 +1,7 @@
 /* Application files */
 const HttpError = require('../../models/http-error');
-const Product = require('../../models/product');
+const Product = require('../../models/commands/product-command');
+const stockEvents = require('../../events/stock-events');
 
 async function fetchProductAndValidateStock(req, res, next) {
     const { id } = req.params;
@@ -36,6 +37,7 @@ async function restock(req, res, next) {
 
     try {
         await product.save();
+        stockEvents.emit('stockUpdated', product);
     } catch (err) {
         return next(new HttpError('Something went wrong, could not update stock.', 500));
     }
@@ -56,6 +58,7 @@ async function sell(req, res, next) {
 
     try {
         await product.save();
+        stockEvents.emit('stockUpdated', product);
     } catch (err) {
         return next(new HttpError('Something went wrong, could not update stock.', 500));
     }

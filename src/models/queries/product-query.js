@@ -1,11 +1,9 @@
-// This model defines the data structure of products. It also defines the connection to the MongoDB database.
-
 /* Libraries */
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const productSchema = new Schema({
+const productQuerySchema = new Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
     price: { 
@@ -21,4 +19,4 @@ const productSchema = new Schema({
     stock: { type: Number, required: true },
 });
 
-module.exports = mongoose.model('Product', productSchema);
+module.exports = mongoose.model('ProductQuery', productQuerySchema);
