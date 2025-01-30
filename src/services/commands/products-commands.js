@@ -2,25 +2,8 @@
 const { validationResult } = require('express-validator');
 
 /* Application files */
-const HttpError = require('../models/http-error');
-const Product = require('../models/product');
-
-async function getAllProducts(req, res, next) {
-
-    let products;
-
-    try {
-        products = await Product.find({});
-    } catch (err) {
-        return next(new HttpError('Fetching products failed, please try again later.', 500));
-    }
-
-    if (!products || products.length === 0) {
-        return next(new HttpError('Could not find any products.', 404));
-    }
-
-    res.json({ products: products.map(product => product.toObject({ getters: true })) });
-}
+const HttpError = require('../../models/http-error');
+const Product = require('../../models/product');
 
 async function addProduct(req, res, next) {
     const errors = validationResult(req);
@@ -48,5 +31,4 @@ async function addProduct(req, res, next) {
     res.status(201).json({ product: newProduct });
 }
 
-exports.getAllProducts = getAllProducts;
 exports.addProduct = addProduct;

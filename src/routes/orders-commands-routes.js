@@ -2,7 +2,7 @@ const express = require('express');
 const { check } = require('express-validator');
 
 /* Application files */
-const ordersController = require('../controllers/orders-controllers');
+const ordersCommands = require('../services/commands/orders-commands');
 
 const router = express.Router();
 
@@ -14,7 +14,7 @@ router.post(
       check('products.*._id').not().isEmpty(),
       check('products.*.quantity').isInt({ gt: 0 })
     ],
-    ordersController.createOrder
+    ordersCommands.createOrder
   );
   
   module.exports = router;

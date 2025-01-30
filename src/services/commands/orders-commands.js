@@ -3,9 +3,9 @@ const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 
 /* Application files */
-const HttpError = require('../models/http-error');
-const Order = require('../models/order');
-const Product = require('../models/product');
+const HttpError = require('../../models/http-error');
+const Order = require('../../models/order');
+const Product = require('../../models/product');
 
 async function createOrder(req, res, next) {
     const errors = validationResult(req);

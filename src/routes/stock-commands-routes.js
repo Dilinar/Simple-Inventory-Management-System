@@ -3,7 +3,7 @@ const express = require('express');
 const { check } = require('express-validator');
 
 /* Application files */
-const stockControllers = require('../controllers/stock-controllers');
+const stockCommands = require('../services/commands/stock-commands');
 
 const router = express.Router();
 
@@ -11,12 +11,12 @@ router.post('/:id/restock',
     [
         check('stock').not().isEmpty()
     ],
-    stockControllers.restock);
+    stockCommands.restock);
 
 router.post('/:id/sell', 
     [
         check('stock').not().isEmpty()
     ],
-    stockControllers.sell);
+    stockCommands.sell);
 
 module.exports = router;

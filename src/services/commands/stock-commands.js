@@ -1,10 +1,6 @@
-/* Libraries */
-const { validationResult } = require('express-validator');
-const mongoose = require('mongoose');
-
 /* Application files */
-const HttpError = require('../models/http-error');
-const Product = require('../models/product');
+const HttpError = require('../../models/http-error');
+const Product = require('../../models/product');
 
 async function fetchProductAndValidateStock(req, res, next) {
     const { id } = req.params;
