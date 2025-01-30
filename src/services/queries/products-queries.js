@@ -1,6 +1,6 @@
 /* Application files */
 const HttpError = require('../../models/http-error');
-const Product = require('../../models/product');
+const Product = require('../../models/queries/product-query');
 
 async function getAllProducts(req, res, next) {
 

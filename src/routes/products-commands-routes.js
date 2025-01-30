@@ -3,7 +3,7 @@ const express = require('express');
 const { check } = require('express-validator');
 
 /* Application files */
-const productsCommands = require('../services/commands/products-commands');
+const productsCommandsController = require('../services/commands/products-commands');
 
 const router = express.Router();
 
@@ -14,6 +14,6 @@ router.post('/add',
         check('price').not().isEmpty().isFloat({ gt: 0 }),
         check('stock').not().isEmpty().isInt({ gt: 0 }),
     ],
-    productsCommands.addProduct);
+    productsCommandsController.addProduct);
 
 module.exports = router;
